@@ -4,12 +4,25 @@ from kalman import KalmanFilter
 
 
 if __name__ == '__main__':
+    """In this example we have a constant variable of interest that we have 
+    noisy measurements of. 
 
-    P0 = 100
+    Thus the process equations are -
+
+    x_{k+1} = x_k
+    y_{k} = x_k + v_k
+
+    Thus the Kalman Filter can be used to compute the unbiased estimate of the 
+    variable of interest. 
+    """
+
+
+
+
+    P0 = 100 #Initial Estimate of 
     R = 100
     x0 = 0
     kf = KalmanFilter([1],[0],[1],[0],[R],[x0],[P0])
-    
     xHist = [x0]
     pHist = [P0]
     yHist = []
