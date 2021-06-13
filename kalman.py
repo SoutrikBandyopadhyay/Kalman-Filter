@@ -19,16 +19,16 @@ class KalmanFilter:
         Let 
         n be the dimension of the state vector
         m be the dimension of the w_k vector
-
+        r be the dimension of the y_k vector
 
         Args:
-            phi (numpy array of size n * n): [description]
-            gamma ([type]): [description]
-            M ([type]): [description]
-            Q ([type]): [description]
-            R ([type]): [description]
-            x0 ([type]): [description]
-            P0 ([type]): [description]
+            phi (numpy array of size n * n): State Transition Matrix
+            gamma (numpy array of size n * m): Process noise weighing matrix
+            M (numpy array of size r * n): Observation Matrix
+            Q (numpy array of size m * m): Covariance matrix of the Process Noise
+            R (numpy array of size r * r): Covariance matrix of the Measurement Noise
+            x0 (numpy array of size n * 1): Initial State estimate
+            P0 (numpy array of size n * n): Initial State Covariance
         """
         self.x = np.array(x0)
         self.P = np.array(P0)
@@ -43,10 +43,15 @@ class KalmanFilter:
     
 
     def update(self,z):
-        """[summary]
+        """Update method is called every time you obtain a new output measurement
+        
 
         Args:
-            z ([type]): [description]
+            z (numpy array of size r * 1): Measurement information
+
+        Returns:
+            x (numpy array of size n * 1): Current State estimate 
+            P (numpy array of size n * n): Current State Covariance
         """
 
 
